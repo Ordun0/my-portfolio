@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game - Your Name</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .game-container {
+            text-align: center;
+            padding: 2rem;
+        }
+        #game-button {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 2rem 0;
+            transition: transform 0.1s;
+        }
+        #game-button:active {
+            transform: scale(0.95);
+        }
+        #score {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        #timer {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+        .game-instructions {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">Your Name</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="game.html">Game</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="game-container">
+            <div class="container">
+                <h1>Click Challenge</h1>
+                <div class="game-instructions">
+                    <p>Click the button as many times as you can in 10 seconds!</p>
+                    <p>Ready to test your clicking speed?</p>
+                </div>
+                
+                <div id="timer">Time left: 10s</div>
+                <div id="score">Score: 0</div>
+                
+                <button id="game-button">Click Me!</button>
+                
+                <div id="game-result" style="display: none;">
+                    <h2>Game Over!</h2>
+                    <p>Your final score: <span id="final-score">0</span></p>
+                    <button id="restart-button">Play Again</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Your Name. Built with pure HTML, CSS, and JavaScript.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Game variables
+        let score = 0;
+        let timeLeft = 10;
+        let gameActive = false;
+        let timer;
+
+        // DOM elements
+        const gameButton = document.getElementById('game-button');
+        const scoreDisplay = document.getElementById('score');
+        const timerDisplay = document.getElementById('timer');
+        const gameResult = document.getElementById('game-result');
+        const finalScore = document.getElementById('final-score');
+        const restartButton = document.getElementById('restart-button');
+
+        // Start game when button is clicked
+        gameButton.addEventListener('click', () => {
+            if (!gameActive) {
+                startGame();
+            } else {
+                incrementScore();
+            }
+        });
+
+        // Restart game
+        restartButton.addEventListener('click', restartGame);
+
+        function startGame() {
+            gameActive = true;
+            score = 0;
+            timeLeft = 10;
+            updateDisplay();
+            
+            gameButton.textContent = "CLICK FAST!";
+            gameResult.style.display = 'none';
+            
+            // Start timer
+            timer = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function incrementScore() {
+            if (gameActive) {
+                score++;
+                scoreDisplay.textContent = `Score: ${score}`;
+            }
+        }
+
+        function updateDisplay() {
+            scoreDisplay.textContent = `Score: ${score}`;
+            timerDisplay.textContent = `Time left: ${timeLeft}s`;
+        }
+
+        function endGame() {
+            clearInterval(timer);
+            gameActive = false;
+            gameButton.textContent = "Click Me!";
+            finalScore.textContent = score;
+            gameResult.style.display = 'block';
+        }
+
+        function restartGame() {
+            gameResult.style.display = 'none';
+            // Game will start on next button click
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
