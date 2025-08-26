@@ -26,6 +26,14 @@ body {
     padding: 0 2rem;
 }
 
+/* Hero Background */
+.hero-background {
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background-image:  linear-gradient(#75DBCD  1px, transparent 1px), linear-gradient(to right, #75DBCD  1px, #f0ead6 1px);
+    background-size: 20px 20px;
+}
+
 /* Navigation */
 .navbar {
     display: flex;
@@ -80,17 +88,11 @@ body {
 /* Hero Section */
 .hero {
     padding: 8rem 0 4rem;
-    background-color: #e5e5f7;
-    opacity: 0.8;
-    background-image:  linear-gradient(#75DBCD  1px, transparent 1px), linear-gradient(to right, #75DBCD  1px, #f0ead6 1px);
-    background-size: 20px 20px;
     color: black;
     min-height: 100vh;
     display: flex;
     align-items: center;
 }
-
-
 
 .hero-content {
     text-align: center;
@@ -120,16 +122,17 @@ body {
 
 .hero-image {
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center;     /* Centers vertically */
-  height: 100vh;           /* Essential: Makes the container full viewport height */
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
 }
 
 .hero-image img {
-  max-width: 100%;  /* Makes image responsive */
-  max-height: 100%; /* Prevents image from overflowing the container */
-  /* Optional: Add styles to the image itself */
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border: 5px solid white;
 }
 
 .btn {
@@ -167,8 +170,12 @@ section {
     padding: 5rem 0;
 }
 
-section:nth-child(even) {
-    background: var(--light-bg);
+.projects, .skills, .contact {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 h2 {
@@ -217,6 +224,37 @@ h2 {
 .project-link:hover {
     text-decoration: underline;
 }
+/* Blog */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.post-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.post-date {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.read-more {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
 
 /* Skills */
 .skills-grid {
@@ -252,37 +290,6 @@ h2 {
 }
 
 .contact-link:hover {
-    text-decoration: underline;
-}
-
-/* Blog */
-.posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.post-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.post-date {
-    color: var(--gray);
-    font-size: 0.9rem;
-    margin: 0.5rem 0;
-}
-
-.read-more {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.read-more:hover {
     text-decoration: underline;
 }
 
@@ -329,5 +336,13 @@ footer {
         flex-direction: column;
         align-items: center;
     }
-
+    
+    .hero-image img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    
+    .projects, .skills, .contact {
+        margin: 1rem;
+    }
 }
